@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+		[v-cloak]{
+			display: none;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<p ref="p" v-cloak>{{msg}}</p>
+			<button @click="click">显示上面那段字</button>
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			  const vm = new Vue({
+			  el: '#app',
+			  data: {
+			    msg: '这是一段字'
+			  },
+			  methods:{
+				  click(){
+					  //显示其他控件的属性
+					  alert(this.$refs.p.textContent);
+					  //显示自己控件的属性
+					  alert(event.target.textContent);
+				  }
+			  }
+			})
+		</script>
+	</body>
+</html>

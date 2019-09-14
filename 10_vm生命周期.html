@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<button @click="click">杀vm</button>
+			<p v-show="show">
+				定时显示和隐藏
+			</p>
+			
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			const vm = new Vue({
+			  el: '#app',
+			  data: {
+			    show: true
+			  },
+			  // 数据挂载后
+			  mounted() {
+			  	this.InteralID = setInterval(()=>{
+					console.log("定时器正在工作");
+					this.show = !this.show;
+				},1000);
+			  },
+			  methods:{
+				  click(){
+					  this.$destroy();
+				  }
+			  },
+			  // 销毁vm前调用,不进行该操作,vm销毁后定时器依旧工作,内存泄漏
+			  beforeDestroy() {
+			  	clearInterval(this.InteralID);
+			  }
+			  
+			})
+		</script>
+	</body>
+</html>

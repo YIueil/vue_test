@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<p v-if="ok<5">成功</p>
+			<p v-else-if="ok<10">小失败</p>
+			<p v-else>大失败</p>
+			<p v-show="bl">成功</p>
+			<p v-show="!bl">失败</p>
+			<button @click="ok++;bl=!bl">变化</button>
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			const vm = new Vue({
+			  el: '#app',
+			  data: {
+			    ok: 0,
+				bl: true
+			  }
+			})
+		</script>
+	</body>
+</html>

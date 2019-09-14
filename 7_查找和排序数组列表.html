@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			查找条件：<input type="text" v-model="where"/>
+			<ul>
+				<li v-for="(p, index) in personsWhere" :key="index">
+					<input id="id" type="text" :value="p.id"/>
+					<input id="name" type="text" :value="p.name"/>
+					<button @click="cha(7,'YIueil',index)">修改</button>
+					<button @click="del(index)">删除</button>
+				</li>
+				<button @click="neww(7,'YIueil',index)">新增</button>
+				<button @click="met=1">升序</button>
+				<button @click="met=2">降序</button>
+				<button @click="met=3">复原</button>
+			</ul>
+			
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			const vm = new Vue({
+			  el: '#app',
+			  data: {
+				where: '',
+				met: 3,//3默认,1升序,2降序
+			    persons: [
+					{id: '2',name: 'aa'},
+					{id: '1',name: 'ab'},
+					{id: '5',name: 'bc'},
+					{id: '4',name: 'bd'},
+					{id: '3',name: 'be'}
+				]
+			  },
+	
+			  methods:{
+				  cha(id,name,index){
+					  const ob={id,name};
+					  console.log(ob);
+					  // 魔改变异方法:实际上就是把原来的方法执行后重新pull
+					  this.persons.splice(index,1,ob);
+				  },
+				  del(index){
+					  this.persons.splice(index,1);
+				  },
+				  neww(id,name,index){
+					  const ob={id,name};
+					  console.log(ob);
+					  this.persons.splice(index,0,ob);
+				  }
+			  },
+			  computed:{
+				  personsWhere(){
+					  //判断是否含有该搜索条件的
+					  const {persons,where,met} = this;
+					  
+					  let pers = persons.filter(sp => sp.name.indexOf(where)>=0);
+					  
+					  if(met!==3){
+					  	//升序
+					  	if(met===1){
+					  		pers.sort(function(p1,p2){
+					  			return p1.id-p2.id;
+					  		})				  
+					  	}
+					  	//降序
+					  	if(met===2){
+					  		pers.sort(function(p1,p2){
+					  			return p2.id-p1.id;
+					  		})					  
+					  	}
+					  }
+					  return pers;
+				  }
+			  }
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<p></p><h2>各种表达式绑定</h2>
+			<p>
+				{{msg}}
+			</p>
+			<p >
+				{{msg.toUpperCase()}}
+			</p>
+			<p v-text="msg"></p>
+			<p v-html="msg"></p>
+			
+			<h2>强制绑定</h2>
+			<img :src="url" alt="">
+			
+			<h2>绑定事件监听</h2>		
+			<button @click="test()">绑定事件，不传参</button>
+			<button @click="test(msg)">绑定事件，传参</button>
+		</div>
+		
+		
+		
+		<script src="js/vue.js"></script>
+		<script>
+			const vm = new Vue({
+				el:'#app',
+				data:{
+					msg:'<a href="www.baidu.com">百度一下</a>',
+					url:'https://v3.bootcss.com/assets/img/sass-less.png'
+				},
+				methods:{
+					test(){
+						alert("YIueil");
+					},
+					test2(msg){
+						alert(msg)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

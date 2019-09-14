@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app1">
+			<p v-upper-text="msg"></p>
+			<p v-lower-text="msg"></p>
+		</div>
+		
+		<div id="app2">
+			<p v-upper-text="msg"></p>
+			<!-- //不在局部指令的操作范围内 -->
+			<p v-lower-text="msg"></p>
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			//el指令所在标签,binding属性相关对象,该指令为全局的
+			Vue.directive("upper-text",function(el,binding){
+				el.textContent=binding.value.toUpperCase();
+			})
+			
+			
+			const vm1 = new Vue({
+			  el: '#app1',
+			  data: {
+			    msg: 'YIueil1'
+			  },
+			  directives:{
+				  'lower-text':function(el,binding){
+				  	el.textContent=binding.value.toLowerCase();
+				  }
+			  }
+			})
+			
+			const vm2 = new Vue({
+			  el: '#app2',
+			  data: {
+			    msg: 'YIueil2'
+			  }
+			})
+		</script>
+	</body>
+</html>

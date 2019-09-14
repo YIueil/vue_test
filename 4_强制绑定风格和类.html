@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			.a{
+				color: red;
+			}
+			.b{
+				color: gray;
+			}
+			.c{
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<p class = "c" :class = "cl">类名是一个字符串</p>
+			<p :class = "{a:isA,b:isB}">类名是一个对象</p>
+			<p :class = "['c',cl]">类名是一个数组</p>
+			
+			<p :style="{fontSize: fs, color: co}">key value直接修改style</p>
+			<button @click="change">变化</button>
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			const vm = new Vue({
+			  el: '#app',
+			  data: {
+			    cl: 'a',
+				isA: true,
+				isB: false,
+				fs: '40px',
+				co: 'blue'
+			  },
+			  methods:{
+				  change(){
+					  this.cl = 'b';
+					  this.isA = false;
+					  this.isB= true;
+					  this.fs = "20px";
+					  this.co = 'red';
+				  }
+			  }
+			})
+		</script>
+	</body>
+</html>

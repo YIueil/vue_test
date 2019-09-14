@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{date }}</p>
+			<p>{{date | dateFotmatFilter}}</p>
+			<p>{{date | dateFotmatFilter("YYYY-MM-DD")}}</p>
+			<p>{{date | dateFotmatFilter("HH:mm:ss")}}</p>
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			//第一个变量为过滤器名字,第二个为过滤函数,过滤函数第一个参数为原值,第二个参数为调用过滤器时传的参数
+			Vue.filter("dateFotmatFilter",function(value,format){
+				return moment(value).format(format || "YYYY-MM-DD HH:mm:ss");
+			})
+			const vm = new Vue({
+			  el: '#app',
+			  data: {
+			    date: new Date
+			  }
+			})
+		</script>
+	</body>
+</html>

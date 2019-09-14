@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<p v-my-directive="msg"></p>
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script src="js/myVuePlugin.js"></script>
+		<script>
+			// 调用 `MyPlugin.install(Vue)`
+			Vue.use(MyPlugin);
+			Vue.myGlobalMethod();
+			const vm = new Vue({
+			  el: '#app',
+			  data: {
+			    msg: 'YIueil'
+			  }
+			})
+			vm.$myMethod();
+		</script>
+	</body>
+</html>

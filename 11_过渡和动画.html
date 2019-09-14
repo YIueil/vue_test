@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.p-enter-active, .p-leave-active {
+			  transition: opacity .5s;
+			}
+			.p-enter, .p-leave-to{
+			  opacity: 0;
+			}
+			
+			.pp-enter-active  {
+			  transition: opacity 10s;
+			}
+			.pp-leave-active {
+			  transition: opacity 5s;
+			}
+			.pp-enter, .pp-leave-to{
+			  opacity: 0;
+			}
+			
+			
+			
+			/* ------------------------ */
+			
+			.ppp-enter-active{
+				animation: all 5s;
+			}
+			.ppp-leave-active{
+				animation: all 5s reverse;
+			}
+			
+			@keyframes all {
+			  0% {
+			    transform: scale(0);
+			  }
+			  50% {
+			    transform: scale(10);
+			  }
+			  100% {
+			    transform: scale(1);
+			  }
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			
+			<button class="" @click="is=!is">动画演示</button>
+			<transition name="p">
+				<p  v-show="is">{{msg}}</p>
+			</transition>
+			
+			<transition name="pp">
+				<p  v-show="is">{{msg}}</p>
+			</transition>
+			
+			<button class="" @click="is3=!is3">过渡演示</button>
+			<transition name="ppp">
+				<div id="" v-if="is3" style="width: 100px;height: 100px;background-color: #808080;">
+					
+				</div>
+			</transition>
+			
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			const vm = new Vue({
+			  el: '#app',
+			  data: {
+			    msg: 'YIueil',
+				is : true,
+				is3 : true
+			  }
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			姓<input type="text" v-model="firstName"/><br/>
+			名<input type="text" v-model="lastName"/><br/>
+			
+			计算单向绑定<input type="text" v-model="name1"/><br/>
+			监视单向绑定<input type="text" v-model="name2"/><br/>
+			计算双向绑定<input type="text" v-model="name3"/><br/>
+			<p>{{name1}}</p>
+			<p>{{name1}}</p>
+			<p>{{name1}}</p>
+			<p>{{name1}}</p>
+			<p>{{name1}}</p>
+			<h4>只计算了一次。说明Vue计算有缓存机制</h4>
+		</div>
+		
+		
+		
+		<script src="js/vue.js"></script>
+		<script>
+			const vm = new Vue({
+			  el: '#app',
+			  data: {
+			    firstName: 'YI',
+				lastName:'ueil',
+				// name1:'YI ueil'
+				name2:'YI ueil',
+				// name3:'YI ueil'2
+			  },
+			  computed:{
+				  name1(){
+					  console.log('我计算咯')
+					  return this.firstName+' '+this.lastName
+				  },
+				  name3:{
+					  get(){
+						  return this.firstName+' '+this.lastName
+					  },
+					  set(value){
+						  const arr = value.split(' ');
+						  this.firstName = arr[0];
+						  this.lastName = arr[1];
+					  }
+				  }
+			  },
+			  watch:{
+				  firstName:function(value){
+					  this.name2 = value +' '+ this.lastName
+				  }
+			  },
+			  
+			})
+			
+			vm.$watch('lastName',function(value){
+					  this.name2 = this.firstName +' '+ value
+			})
+		</script>
+	</body>
+</html>

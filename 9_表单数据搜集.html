@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<form action="" method="post" @submit.prevent ="submitFun">
+				<label for="">姓名</label>
+					<input type="text" id="name" v-model="name"><br />
+					<label for="">性别</label><br />
+					男：
+					<input type="radio" id="men" value="男" v-model="sex">
+					女：
+					<input type="radio" id="wumen" value="女" v-model="sex"><br />
+					
+					<label for="">爱好</label><br />
+					LoL
+					<input type="checkbox" value="LoL" v-model="like">
+					Pokemon
+					<input type="checkbox" value="Pokemon" v-model="like">
+					YGO
+					<input type="checkbox" value="YGO" v-model="like"><br />
+					<label for="">城市</label><br>
+					<select value="" v-model="city">
+						<option value ="">未选择</option>
+						<option :value="c.id" v-for="(c,index) in allCitys" :key="index">{{c.name}}</option>
+					</select><br />
+					<label for="">介绍</label><br />
+					<textarea rows="10" cols="" v-model="sign">
+						
+					</textarea>
+					<input type="submit" /> 
+						
+			</form>
+			
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			const vm = new Vue({
+			  el: '#app',
+			  data: {
+			    name:'',
+				sex:'男',
+				like:[],
+				sign:'个性签名',
+				city:'2',
+				allCitys:[{id:1,name:"北京"},{id:2,name:"上海"},{id:3,name:"广东"}]
+			  },
+			  methods:{
+				  submitFun(){
+					  const user = {
+						  name:this.name,
+						  sex:this.sex,
+						  like:this.like,
+						  sign:this.sign,
+						  city:this.city
+						 
+					  }
+					  console.log(user);
+				  }
+			  }
+			  
+			})
+		</script>
+	</body>
+</html>

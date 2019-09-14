@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>绑定监听</h2>
+			<button @click="test1">输出某值</button>
+			<button @click="test2">获取该值</button>
+			<button @click="test3('参数',$event)">传参且获取该值</button>
+			
+			<h2>事件修饰符</h2>
+			阻止冒泡排序前:
+			<div style="height: 100px;width: 100px;background-color: #42B983;" @click="big1">
+				<div style="height: 50px;width: 50px;background-color: #FF0000;" @click="xs1">点一下试试</div>
+			</div>
+			阻止冒泡排序后:
+			<div style="height: 100px;width: 100px;background-color: blue;" @click="big2">
+				<div style="height: 50px;width: 50px;background-color: #808080;" @click.stop="xs2">点一下试试</div>
+			</div>
+			<h2>按键修饰符,keyup修饰</h2>
+			<input type="text" @keyup.enter ="click"/>
+			
+			
+		</div>
+		
+		<script src="js/vue.js"></script>
+		<script>
+			const vm = new Vue({
+			  el: '#app',
+			  data: {
+				test1(){
+					alert('写死了的')
+				},
+				test2(){
+					alert(event.target.innerHTML)
+				},
+				big1(){
+					alert('big')
+				},
+				big2(){
+					alert('big')
+				},
+				xs1(){
+					alert('xs')
+				},
+				xs2(){
+					alert('xs')
+				}
+				
+			  },
+			  methods:{
+				test3(e,event){
+					alert(e+' '+event.target.innerHTML)
+				},
+				click(){
+					alert(event.target.value)
+				}
+			  }
+			})
+		</script>
+	</body>
+</html>
